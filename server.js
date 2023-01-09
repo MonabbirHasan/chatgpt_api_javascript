@@ -18,7 +18,7 @@ app.get('/', async (req, res) => {
     message: 'HELLO FROM AI',
   })
 })
-
+const PORT=3000;
 app.post('/ai/call', async (req, res) => {
   try {
     const prompt = req.body.prompt
@@ -39,4 +39,4 @@ app.post('/ai/call', async (req, res) => {
   }
 })
 
-app.listen(5000,()=>console.log("server run on: localhost:5000"))
+app.listen(PORT,()=>console.log("server run on: localhost:3000"))
