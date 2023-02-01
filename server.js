@@ -18,7 +18,8 @@ app.get('/', async (req, res) => {
     message: 'HELLO FROM AI',
   })
 })
-const PORT=3000;
+// const PORT=3000;
+const PORT = process.env.PORT || 3000;
 app.post('/ai/call', async (req, res) => {
   try {
     const prompt = req.body.prompt
