@@ -1,0 +1,48 @@
+import express from 'express'
+import * as dotenv from 'dotenv'
+import cors from 'cors'
+import { Configuration, OpenAIApi } from 'openai'
+dotenv.config()
+console.log(process.env.OPENAI_API_KEY2)
+const configuration = new Configuration({
+  apiKey: process.env.OPENAI_API_KEY2,
+})
+
+const openai = new OpenAIApi(configuration)
+
+const app = express()
+app.use(cors())
+app.use(express.json())
+app.get('/', async (req, res) => {
+  res.status(200).send({
+    message: 'HELLO FROM AI',
+  })
+})
+<<<<<<< HEAD:index.js
+
+app.post('/', async (req, res) => {
+=======
+// const PORT=3000;
+const PORT = process.env.PORT || 3000;
+app.post('/ai/call', async (req, res) => {
+>>>>>>> 023bd3c6612dce3de90e06a7cd82bd21037129fa:server.js
+  try {
+    const prompt = req.body.prompt
+    const response = await openai.createCompletion({
+      model: 'text-davinci-003',
+      prompt: `${prompt}`,
+      temperature: 0,
+      max_tokens: 3000,
+      top_p: 1,
+      frequency_penalty: 0.5,
+      presence_penalty: 0,
+    })
+    res.status(200).send({
+      bot: response.data.choices[0].text,
+    })
+  } catch (error) {
+    res.status(500).send({ error })
+  }
+})
+
+app.listen(PORT,()=>console.log("server run on: localhost:3000"))
