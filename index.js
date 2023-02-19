@@ -21,7 +21,7 @@ app.get('/', async (req, res) => {
 })
 // const PORT=3000;
 const PORT = process.env.PORT || 3000;
-app.post('/ai/call', async (req, res) => {
+app.post('/', async (req, res) => {
   try {
     const prompt = req.body.prompt
     const response = await openai.createCompletion({
